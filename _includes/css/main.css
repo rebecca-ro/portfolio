@@ -529,7 +529,7 @@ footer .footer-below {
     background-color: #{{ site.color.secondary-dark }};
 }
 
-/* Publications Section */
+/* Blog Section */
 .blog-section {
   padding: 60px 20px;
   max-width: 1000px;
