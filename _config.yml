@@ -67,3 +67,4 @@ defaults:
       type: "posts"
     values:
       permalink: ""
+      # Cache bust trigger
