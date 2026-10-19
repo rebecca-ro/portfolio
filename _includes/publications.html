@@ -1,0 +1,61 @@
+<!-- Threat Matrix Publications -->
+<section id="publications" class="publications-section">
+  <h2>THREAT MATRIX PUBLICATIONS</h2>
+  
+  <div id="medium-feed-container" class="medium-grid">
+    <p class="feed-status">Loading latest articles...</p>
+  </div>
+</section>
+
+<script>
+  (function() {
+    const mediumUsername = 'ThreatMatrix'; 
+    const feedUrl = `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${threatmatrix}`;
+
+    fetch(feedUrl)
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById('medium-feed-container');
+        if (!data.items || data.items.length === 0) {
+          container.innerHTML = '<p class="feed-status">No articles found.</p>';
+          return;
+        }
+
+        container.innerHTML = '';
+
+        data.items.slice(0, 6).forEach(item => {
+          let thumbnail = item.thumbnail;
+          if (!thumbnail) {
+            const imgMatch = item.content.match(/<img[^>]+src="([^">]+)"/);
+            thumbnail = imgMatch ? imgMatch[1] : '';
+          }
+
+          const pubDate = new Date(item.pubDate).toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric'
+          });
+
+          const card = document.createElement('div');
+          card.className = 'article-card';
+          card.innerHTML = `
+            ${thumbnail ? `<img src="${thumbnail}" alt="${item.title}">` : ''}
+            <div class="article-content">
+              <div>
+                <span class="article-date">${pubDate}</span>
+                <h3 class="article-title">${item.title}</h3>
+              </div>
+              <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="article-link">
+                Read Article →
+              </a>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      })
+      .catch(() => {
+        document.getElementById('medium-feed-container').innerHTML = 
+          '<p class="feed-status">Unable to load articles.</p>';
+      });
+  })();
+</script>
