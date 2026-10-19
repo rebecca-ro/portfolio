@@ -530,13 +530,13 @@ footer .footer-below {
 }
 
 /* Publications Section */
-.publications-section {
+.blog-section {
   padding: 60px 20px;
   max-width: 1000px;
   margin: 0 auto;
 }
 
-.publications-section h2 {
+.blog-section h2 {
   font-size: 2rem;
   color: #2D3E33;
   text-align: center;
