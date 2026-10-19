@@ -7937,6 +7937,7 @@ readers do not read off random characters that represent icons */
   padding: 60px 20px;
   max-width: 1000px;
   margin: 0 auto;
+  background-color: #ffffff
 }
 
 .blog-section h2 {
